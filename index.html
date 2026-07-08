@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Private Gallery</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#111;
+color:white;
+}
+
+#login{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:#000;
+}
+
+.box{
+background:#222;
+padding:30px;
+border-radius:15px;
+text-align:center;
+width:320px;
+}
+
+.box input{
+width:100%;
+padding:12px;
+margin:15px 0;
+border:none;
+border-radius:8px;
+}
+
+.box button{
+width:100%;
+padding:12px;
+background:#0a84ff;
+color:white;
+border:none;
+border-radius:8px;
+cursor:pointer;
+}
+
+#gallery{
+display:none;
+padding:20px;
+}
+
+h1{
+text-align:center;
+margin-bottom:20px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:15px;
+}
+
+.grid img{
+width:100%;
+height:220px;
+object-fit:cover;
+border-radius:10px;
+cursor:pointer;
+transition:.3s;
+}
+
+.grid img:hover{
+transform:scale(1.05);
+}
+
+#viewer{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.95);
+justify-content:center;
+align-items:center;
+}
+
+#viewer img{
+max-width:90%;
+max-height:90%;
+border-radius:10px;
+}
+</style>
+
+</head>
+<body>
+
+<div id="login">
+
+<div class="box">
+
+<h2>🔒 Private Gallery</h2>
+
+<input
+type="password"
+id="pass"
+placeholder="Password">
+
+<button onclick="login()">
+
+Unlock
+
+</button>
+
+<p id="msg"></p>
+
+</div>
+
+</div>
+
+<div id="gallery">
+
+<h1>📸 My Private Gallery</h1>
+
+<div class="grid">
+
+<img src="photo1.jpg" onclick="show(this.src)">
+<img src="photo2.jpg" onclick="show(this.src)">
+<img src="photo3.jpg" onclick="show(this.src)">
+<img src="photo4.jpg" onclick="show(this.src)">
+<img src="photo5.jpg" onclick="show(this.src)">
+<img src="photo6.jpg" onclick="show(this.src)">
+<img src="photo7.jpg" onclick="show(this.src)">
+<img src="photo8.jpg" onclick="show(this.src)">
+<img src="photo9.jpg" onclick="show(this.src)">
+<img src="photo10.jpg" onclick="show(this.src)">
+
+</div>
+
+</div>
+
+<div id="viewer" onclick="closeViewer()">
+
+<img id="bigImage">
+
+</div>
+
+<script>
+
+const PASSWORD="abhigauri15";
+
+function login(){
+
+if(document.getElementById("pass").value===PASSWORD){
+
+document.getElementById("login").style.display="none";
+
+document.getElementById("gallery").style.display="block";
+
+}else{
+
+document.getElementById("msg").innerHTML="❌ Wrong Password";
+
+}
+
+}
+
+function show(src){
+
+document.getElementById("viewer").style.display="flex";
+
+document.getElementById("bigImage").src=src;
+
+}
+
+function closeViewer(){
+
+document.getElementById("viewer").style.display="none";
+
+}
+
+</script>
+
+</body>
+</html>
